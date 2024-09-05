@@ -1,8 +1,0 @@
-settings:
-  digits: 4
-  parent: REQ
-  prefix: TST
-  sep: ''
-attributes:
-  defaults:
-    normative: True
