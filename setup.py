@@ -20,7 +20,7 @@ setup(
     long_description_content_type="text/markdown",
     py_modules=["rtm_doorstop"],
     python_requires=">=3.7",
-    install_requires=["doorstop>=2.0.0", "rapidtables>=0.1", "fire>=0.3"],
+    install_requires=["doorstop>=2.0.0", "rapidtables>=0.1", "fire>=0.3", "tabulate>=0.8.0"],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Environment :: Console",

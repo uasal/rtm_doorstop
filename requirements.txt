@@ -1,3 +1,5 @@
 doorstop
 rapidtables
 fire
+tabulate
+pandas
