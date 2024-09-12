@@ -25,7 +25,7 @@ def rtm_builder(
         {
             "UID": str(item),
             "Text": item.text,
-            "Test Method(s)": item.testing_methods,
+            "Test Method(s)": item.test_methods,
             "Tier": item.tier,
             "Status": item.status,
         }
@@ -49,7 +49,7 @@ def rtm_builder(
             df = pd.read_csv(csv_path)
             with open(path, 'w') as md:
                 df.to_markdown(buf=md)
-        return f"Successfully wrote requirement verification matrix (RWM) to {path}"
+        return f"Successfully wrote requirement verification matrix (RVM) to {path}"
     else:
         return table
 
