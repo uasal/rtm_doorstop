@@ -1,0 +1,12 @@
+# Future implementation of a configuration file for setting the RTM (RVM) headers.
+
+document:
+  prefix: "L4"
+  output: "markdown"
+
+header:
+  UID: str(item)
+  Name: item.short_name
+  Test Method(s): item.test_methods
+  Level: item.tier
+  Status: item.status
