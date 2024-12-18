@@ -4,6 +4,11 @@ import rapidtables
 import csv
 import fire
 import pandas as pd
+import numpy as np
+import subprocess
+from pathlib import Path
+
+fieldnames = ["UID", "Name", "Text", "Verification Plan", "Verification Method", "Tier", "Status"]
 
 
 def rtm_builder(
@@ -21,11 +26,24 @@ def rtm_builder(
     """
     tree = doorstop.build(root=root)
     reqs_doc = tree.find_document(prefix)
+    csv_path = path.replace(".md", ".csv").replace(".markdown", ".csv")
+
+    # Run doorstop export command to generate doorstop csv file (if it does not exist)
+    directory = Path(csv_path)
+    if directory.exists():
+        print("Requirement csv files already exist. Skipping doorstop export command process...")
+    else:
+        export_cmd = "doorstop export " + prefix + " " + csv_path
+        subprocess.run(export_cmd, shell=True)
+
+    # NOTE: If labels for the table_data are edited, change the fieldnames variable as well
     table_data = [
         {
             "UID": str(item),
+            "Name": item.short_name,
             "Text": item.text,
-            "Test Method(s)": item.test_methods,
+            "Verification Plan": item.verification_plan,
+            "Verification Method": item.test_methods,
             "Tier": item.tier,
             "Status": item.status,
         }
@@ -38,15 +56,14 @@ def rtm_builder(
     table = rapidtables.make_table(table_data, tablefmt="md")
 
     if path:
-        csv_path = path.replace(".md", ".csv").replace(".markdown", ".csv")
         with open(csv_path, "w", newline="") as file:
-            fieldnames = ["UID", "Text", "Test Method(s)", "Tier", "Status"]
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
             for row in table_data:
                 writer.writerow(row)
         if path.endswith(".md") or path.endswith(".markdown"):
             df = pd.read_csv(csv_path)
+            df = df.replay(np.nan, "")
             with open(path, 'w') as md:
                 df.to_markdown(buf=md)
         return f"Successfully wrote requirement verification matrix (RVM) to {path}"
