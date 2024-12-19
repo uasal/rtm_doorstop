@@ -8,7 +8,7 @@ import numpy as np
 import subprocess
 from pathlib import Path
 
-fieldnames = ["UID", "Name", "Text", "Verification Plan", "Verification Method", "Tier", "Status"]
+fieldnames = ["UID", "Name", "Text", "Owner(s)", "Verification Plan", "Verification Method", "Phase", "Status"]
 
 
 def rtm_builder(
@@ -42,9 +42,10 @@ def rtm_builder(
             "UID": str(item),
             "Name": item.short_name,
             "Text": item.text,
+            "Owner(s)": item.owners,
             "Verification Plan": item.verification_plan,
             "Verification Method": item.test_methods,
-            "Tier": item.tier,
+            "Phase": item.tier,
             "Status": item.status,
         }
         for item in reqs_doc.items
@@ -63,7 +64,7 @@ def rtm_builder(
                 writer.writerow(row)
         if path.endswith(".md") or path.endswith(".markdown"):
             df = pd.read_csv(csv_path)
-            df = df.replay(np.nan, "")
+            df = df.replace(np.nan, "")
             with open(path, 'w') as md:
                 df.to_markdown(buf=md)
         return f"Successfully wrote requirement verification matrix (RVM) to {path}"
