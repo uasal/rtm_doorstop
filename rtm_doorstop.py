@@ -39,14 +39,13 @@ def rtm_builder(
     # NOTE: If labels for the table_data are edited, change the fieldnames variable as well
     table_data = [
         {
-            "UID": str(item),
-            "Name": item.short_name,
-            "Text": item.text,
-            "Owner(s)": item.owners,
-            "Verification Plan": item.verification_plan,
-            "Verification Method": item.test_methods,
-            "Phase": item.tier,
-            "Status": item.status,
+            "UID": str(item), # Requirement UID
+            "Name": item.short_name, # Requirement name
+            "Text": item.text, # Requirement shall statement
+            "Verification Plan": item.verification_plan, # Link to Verification Plan
+            "Verification Method": item.verification_methods, # Test Methods for verification (ex. Test, Inspection, Analysis, Demonstration)
+            "Phase": item.phase, # Phase verification is performed
+            "Status": item.status, # Status of verification of requirement (ex. Coming soon)
         }
         for item in reqs_doc.items
     ]
