@@ -8,7 +8,7 @@ import numpy as np
 import subprocess
 from pathlib import Path
 
-fieldnames = ["UID", "Name", "Text", "Owner(s)", "Verification Plan", "Verification Method", "Phase", "Status"]
+fieldnames = ["UID", "Name", "Shall Statement", "Owner(s)", "Verification Plan", "Verification Method", "Phase", "Status"]
 
 
 def rtm_builder(
@@ -41,7 +41,7 @@ def rtm_builder(
         {
             "UID": str(item), # Requirement UID
             "Name": item.short_name, # Requirement name
-            "Text": item.text, # Requirement shall statement
+            "Shall Statement": item.text, # Requirement shall statement
             "Verification Plan": item.verification_plan, # Link to Verification Plan
             "Verification Method": item.verification_methods, # Test Methods for verification (ex. Test, Inspection, Analysis, Demonstration)
             "Phase": item.phase, # Phase verification is performed
