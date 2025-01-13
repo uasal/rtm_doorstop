@@ -5,7 +5,7 @@ _Version 1.1.1 of [rtm_doorstop](https://github.com/asimon-1/rtm_doorstop) used 
 
 Refer to the [`CHANGELOG.md`](CHANGELOG.md) for a list of adjustments / features added to the base `rtm_doorstop` version used.<br>
 
-[Command Adjustments](CHANGELOG.md#command-adjustments) are located within the [`CHANGELOG.md`](CHANGELOG.md) as well and should be used over what is listed below in the base version of `rtm_doorstop`. 
+[Command Adjustments](CHANGELOG.md#command-adjustments) are located within the [`CHANGELOG.md`](CHANGELOG.md) as well and should be used over what is listed below in the base version of `rtm_doorstop`. Both `--prefix` and `--path` callouts are needed in the command statements.
 
 --------
 
