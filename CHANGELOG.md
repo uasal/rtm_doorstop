@@ -9,12 +9,37 @@ _Version 1.1.1 of [rtm_doorstop](https://github.com/asimon-1/rtm_doorstop) used 
 - [Change Log](#change-log)
   - [Contents](#contents)
   - [Edits Overview](#edits-overview)
+    - [u/sfrinaldi/#1-rvm-updates](#usfrinaldi1-rvm-updates)
+      - [rtm\_doorstop.py](#rtm_doorstoppy)
+      - [`CHANGELOG.md`](#changelogmd)
+      - [`setup.py`](#setuppy)
+    - [develop](#develop)
   - [Command Adjustments](#command-adjustments)
 
 ----------------
 
 ## Edits Overview
-_List of changes / feature additions to `rtm_doorstop`._
+_List of changes / feature additions to `rtm_doorstop`. Adjustments are grouped by the branch name in which they were created in originally before implemented in the main or develop branches._
+
+### u/sfrinaldi/#1-rvm-updates
+_Features / changes with the `u/sfrinaldi/#1-rvm-updates` branch._
+
+#### [rtm_doorstop.py](rtm_doorstop.py)
+- Edited RVM columns:
+  - Columns renamed / changed
+    - Methods, Verification Plan, Phases, Status
+    - Removed Owners and Text from RVM output
+  
+#### [`CHANGELOG.md`](CHANGELOG.md)
+- Content mixed in `README.md` was separated into a new file (`CHANGELOG.md`)
+  
+#### [`setup.py`](setup.py)
+- Added pandas >= 2.1.0 to the install requirements  
+
+------------------------
+
+### develop
+_Initial features / changes added with the develop branch that was based from version 1.1.1 of [rtm_doorstop](https://github.com/asimon-1/rtm_doorstop).
 
 - **Added** RVM columns in [rtm_doorstop.py](rtm_doorstop.py) to generate an RVM instead of traceability matrix. 
   - **Includes:** UID, Text, Test Method(s), Tier and Status 
@@ -39,14 +64,21 @@ _Overview of commands that have been adjusted from the Version 1.1.1 of [rtm_doo
 
 Adjustment from `--csv_path` to `--path` in command line.<br>
 
-`rtm_doorstop 'PREFIX' --path`<br>
+`rtm_doorstop '--prefix' --path`<br>
 
 **Additional Information:**<br>
-- `PREFIX` = The requirement _'document'_ in doorstop you want to generate an RVM for. 
+- `--prefix` = The requirement _'document'_ in doorstop you want to generate an RVM for. 
   - Ex.) `L0` for Level 0 requirements
 - `--path` = Directory for where the output RVM will be written too. 
   - The file extension also determines if a `markdown` or a `csv` file will be generated.
   - Ex.) `dist/latex/L4-RVM.md` or `dist/latex/L4-RVM.markdown`
   - Ex.) `dist/L4-RVM.csv`
+
+**Example Command Statement:**
+
+`rtm_doorstop` `--prefix` L4 `--path` dist/markdown/rvm.md
+
+- `L4`- *Document Prefix recognized for the requirements created/imported with doorstop*
+- `dist/markdown/rvm.md`- *Directory where the output file is desired with the specification that it will be a markdown file instead of the default csv.*
 
 --------
