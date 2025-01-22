@@ -44,7 +44,7 @@ def rtm_builder(
             #"Text": item.text, # Requirement shall statement
             "Verification Plan": item.verification_plan, # Link to Verification Plan
             "Method": item.verification_methods, # Test Methods for verification (ex. Test, Inspection, Analysis, Demonstration)
-            "Phase": item.phase, # Phase verification is performed
+            "Phase": item.phases, # Phase verification is performed
             "Status": item.status, # Status of verification of requirement (ex. Coming soon)
         }
         for item in reqs_doc.items
